@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 
 function Filmes() {
 
     const [imagens, setImagens] = useState([{}]);
+
 
     useEffect(() => {
         axios
@@ -17,7 +19,7 @@ function Filmes() {
     }, []);
 
    
-        return (
+        return imagens.length > 0 ?(
 
             <main className="Filmes">
                 <h3 className="titulo">Selecione o filme</h3>
@@ -25,14 +27,16 @@ function Filmes() {
                     {
                         imagens.map((imagem) => {
                             const { id, title, posterURL } = imagem;
-                            return <div className="imagem" key={id}>
+                            return <div className="imagem" key={id + 1}>
+                                <Link to={`/sessoes/${id}`}>
                                 <img src={posterURL} alt={title} />
+                                </Link>
                             </div>
                         })
                     }
                 </div>
             </main> 
-    )
+    ) : <></>
     }
 
 export default Filmes;
