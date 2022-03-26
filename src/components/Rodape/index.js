@@ -1,3 +1,5 @@
+import "./style.css";
+
 function Rodape({posterURL, title}) {
     return (
         <footer className="Footer">

@@ -39,37 +39,43 @@ function Sessao() {
             })
     }, [])
 
-
-    const {title, posterURL, days} = sessoes;
+    const { title, posterURL } = sessoes;
 
     return (
         <>
             <main className="Sessao">
                 <h3>Selecione o horário</h3>
                 {
-                    days.map((sessao) => {
-                        return <div className="programacao" key={sessao + sessao.id}>
+                    sessoes.days.map((sessao) => {
+                        return (<div className="programacao" key={sessao + sessao.id}>
                             <div className="informacoes" >
                                 <p>{sessao.weekday} - {sessao.date}</p>
-                                {
-                                    days.map((horario) => {
-                                        <>
-                                            <Link to={`/assentos/${horario.name}`}>
-                                                <div className="horario">{horario.id}</div>
-                                            </Link>
-                                        </>
-                                    })
-                                }
+                                <div className="horarios">
+                                    {
+                                        sessao.showtimes.map((horario) => {
+
+                                            return (
+
+                                                <Link to={`/assentos/${horario.id}`}>
+                                                    <div className="horario">{horario.name}</div>
+                                                </Link>
+
+                                            );
+
+                                        })
+                                    }
+                                </div>
 
                             </div>
                         </div>
+                        );
                     })
 
                 }
 
             </main>
 
-            <Rodape title={title} posterURL={posterURL}/>
+            <Rodape title={title} posterURL={posterURL} />
         </>
     )
 }
