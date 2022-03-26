@@ -37,7 +37,7 @@ function Sessao() {
                 const { data } = response;
                 setSessoes(data);
             })
-    }, [])
+    }, [idFilme])
 
     const { title, posterURL } = sessoes;
 
