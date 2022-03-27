@@ -47,7 +47,7 @@ function Sessoes() {
                 <h3>Selecione o horário</h3>
                 {
                     sessoes.days.map((sessao) => {
-                        return (<div className="programacao" key={sessao + sessao.id}>
+                        return (<div className="programacao" key={sessao + sessao.id + 1}>
                             <div className="informacoes" >
                                 <p>{sessao.weekday} - {sessao.date}</p>
                                 <div className="horarios">

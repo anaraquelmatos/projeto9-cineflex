@@ -1,6 +1,5 @@
 import { useState } from "react";
 import style from "styled-components";
-import "./style.css";
 
 function Assento({ name, isAvailable }) {
 

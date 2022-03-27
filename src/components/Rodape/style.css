@@ -1,4 +1,4 @@
-.Footer{
+.Rodape{
     width: 100%;
     height: 117px;
     position: fixed;
@@ -8,14 +8,14 @@
     border: 1px solid #9EADBA;
 }
 
-.Footer .imagem-titulo{
+.Rodape .imagem-titulo{
     width: 100%;
     margin-left: 10px;
     display: flex;
     align-items: center;
 }
 
-.Footer .imagem-titulo .imagem {
+.Rodape .imagem-titulo .imagem {
     width: 64px;
     height: 89px;
     margin-top: 14px;
@@ -28,12 +28,12 @@
     border-radius: 2px;
 }
 
-.Footer .imagem-titulo .imagem img{
+.Rodape .imagem-titulo .imagem img{
     width: 48px;
     height: 72px;
 }
 
-.Footer .imagem-titulo p{
+.Rodape .imagem-titulo p, .Rodape .imagem-titulo .informacoes p{
     padding-left: 14px;
     font-style: normal;
     font-weight: 400;
