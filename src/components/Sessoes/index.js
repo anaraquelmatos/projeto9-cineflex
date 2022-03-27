@@ -5,7 +5,7 @@ import axios from "axios";
 import Rodape from "../Rodape";
 import "./style.css";
 
-function Sessao() {
+function Sessoes() {
 
     const { idFilme } = useParams();
     const [sessoes, setSessoes] = useState({
@@ -65,7 +65,6 @@ function Sessao() {
                                         })
                                     }
                                 </div>
-
                             </div>
                         </div>
                         );
@@ -80,4 +79,4 @@ function Sessao() {
     )
 }
 
-export default Sessao;
+export default Sessoes;
