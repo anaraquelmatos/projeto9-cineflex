@@ -3,8 +3,18 @@
     height: 100%;
 }
 
-.Sucesso h3{
+.Sucesso .titulo{
     padding-top: 30px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #247A6B;
+}
+
+.Sucesso .tituloContinucao{
     padding-bottom: 50px;
     font-style: normal;
     font-weight: 700;
@@ -16,9 +26,8 @@
 }
 
 .Sucesso .bloco{
-    height: 110px;
-    margin-bottom: 15px;
     margin-left: 29px;
+    margin-bottom: 30px;
 }
 
 .Sucesso h4{

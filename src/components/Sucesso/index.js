@@ -1,30 +1,36 @@
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./style.css";
 
 function Sucesso() {
+
+    const location = useLocation();
+    const array = location.state.identificacao;
     return (
         <main className="Sucesso">
-            <h3>Pedido feito com sucesso!</h3>
+            <p className="titulo">Pedido feito</p>
+            <p className="tituloContinucao">com sucesso!</p>
             <section>
                 <article>
                     <div className="bloco">
                         <h4>Filme e sessão</h4>
-                        <p>Teste</p>
-                        <p>Teste 2</p>
+                        <p>{location.state.titulo}</p> 
+                        <p>{location.state.dia} {location.state.horario}</p>
                     </div>
                 </article>
                 <article>
                     <div className="bloco">
                         <h4>Ingressos</h4>
-                        <p>Assento</p>
-                        <p>Assento</p>
+                        {array.map((arr) => 
+                        <p>Assento {arr}</p>
+                        )}
                     </div>
                 </article>
                 <article>
-                    <div className="bloco">
+                    <div className=" bloco comprador">
                         <h4>Comprador</h4>
-                        <p>Nome:</p>
-                        <p>CPF:</p>
+                        <p>Nome: {location.state.nome}</p>
+                        <p>CPF: {location.state.cpf}</p>
                     </div>
                 </article>
             </section>

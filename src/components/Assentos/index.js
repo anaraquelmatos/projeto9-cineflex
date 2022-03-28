@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {Link} from "react-router-dom";
 import axios from "axios";
 import Assento from "../Assento";
 import Rodape from "../Rodape";
@@ -8,8 +7,9 @@ import "./style.css";
 
 function Assentos() {
     const { idSessao } = useParams();
-    const navigate = useNavigate;
+    const navigate = useNavigate({});
     const [totalAssentos, setTotalAssentos] = useState([]);
+    const [identificacaoAssento, setIdentificacaoAssento] = useState([]);
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
     const [assentos, setAssentos] = useState({
@@ -47,21 +47,33 @@ function Assentos() {
                 const { data } = response;
                 setAssentos(data);
             })
-            .catch(err => console.log(err.response));
     }, [idSessao])
 
     function reservarAssento(event) {
 
         event.preventDefault();
 
-        navigate("/sucesso", {state: totalAssentos, nome, cpf, title, weekday, name});
-
         axios
             .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, {
                 ids: totalAssentos,
                 name: nome,
                 cpf: cpf
-            });
+            })
+            .then(() => {
+                const Reserva = {
+                    ids: totalAssentos,
+                    nome: nome,
+                    cpf: cpf,
+                    titulo: title,
+                    dia: weekday,
+                    horario: name,
+                    identificacao: identificacaoAssento
+                }
+                
+               return navigate("/sucesso", { state: Reserva });
+            }
+            );
+
     }
 
     return Object.values(assentos).length > 0 ? (
@@ -76,7 +88,8 @@ function Assentos() {
                                     return (
                                         <Assento key={assento + 1 + assento.name} name={assento.name}
                                             isAvailable={assento.isAvailable} id={assento.id}
-                                            setTotalAssentos={setTotalAssentos} totalAssentos={totalAssentos} />
+                                            setTotalAssentos={setTotalAssentos} totalAssentos={totalAssentos} 
+                                            identificacaoAssento={identificacaoAssento} setIdentificacaoAssento={setIdentificacaoAssento} assento={assento.name}/>
                                     );
                                 })
                             }
@@ -106,14 +119,12 @@ function Assentos() {
 
                 <div className="form" onSubmit={reservarAssento}>
                     <form>
-                        <label for="campoNome">Nome do comprador:</label>
-                        <input id="campoNome" name="nome" type="text" placeholder="Digite seu nome..." required value={nome} onChange={e => setNome(e.target.value)}></input>
-                        <label for="campoCPF" >CPF do comprador:</label>
-                        <input id="campoCPF" name="cpf" type="number" placeholder="Digite seu CPF..." required value={cpf} onChange={e => setCpf(e.target.value)}></input>
+                        <label>Nome do comprador:</label>
+                        <input name="nome" type="text" placeholder="Digite seu nome..." required value={nome} onChange={e => setNome(e.target.value)}></input>
+                        <label>CPF do comprador:</label>
+                        <input name="cpf" type="number" placeholder="Digite seu CPF..." required value={cpf} onChange={e => setCpf(e.target.value)}></input>
                         <div className="botao">
-                            <Link to={`/sucesso`}>
-                            <button type="submit">Reservar assento(s)</button>
-                            </Link>
+                                <button type="submit">Reservar assento(s)</button>
                         </div>
                     </form>
                 </div>
