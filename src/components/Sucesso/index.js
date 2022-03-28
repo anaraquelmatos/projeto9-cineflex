@@ -6,6 +6,7 @@ function Sucesso() {
 
     const location = useLocation();
     const array = location.state.identificacao;
+
     return (
         <main className="Sucesso">
             <p className="titulo">Pedido feito</p>
@@ -14,15 +15,15 @@ function Sucesso() {
                 <article>
                     <div className="bloco">
                         <h4>Filme e sessão</h4>
-                        <p>{location.state.titulo}</p> 
+                        <p>{location.state.titulo}</p>
                         <p>{location.state.dia} {location.state.horario}</p>
                     </div>
                 </article>
                 <article>
                     <div className="bloco">
                         <h4>Ingressos</h4>
-                        {array.map((arr) => 
-                        <p>Assento {arr}</p>
+                        {array.map((arr) =>
+                            <p key={arr}>Assento {arr}</p>
                         )}
                     </div>
                 </article>

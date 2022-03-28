@@ -9,10 +9,10 @@ function Rodape({ posterURL, title, weekday, name, hifen }) {
                     <img src={posterURL} alt={title} />
                 </div>
                 <div className="detalhes-filme">
-                <p>{title}</p>
-                <div className="informacoes" >
-                    <p>{weekday} {hifen} {name}</p>
-                </div>
+                    <p>{title}</p>
+                    <div className="informacoes" >
+                        <p>{weekday} {hifen} {name}</p>
+                    </div>
                 </div>
             </div>
         </footer>

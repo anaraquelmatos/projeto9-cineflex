@@ -15,8 +15,18 @@
     align-items: center;
 }
 
+.Rodape .imagem-titulo .detalhes-filme{
+    width: 100%;
+    height: 89px;
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+
 .Rodape .imagem-titulo .imagem {
-    width: 64px;
+    width: 75px;
     height: 89px;
     margin-top: 14px;
     margin-left: 10px;

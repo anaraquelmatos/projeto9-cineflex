@@ -41,7 +41,7 @@ function Sessoes() {
 
     const { title, posterURL } = sessoes;
 
-    return (
+    return Object.values(sessoes).length > 0 ? (
         <>
             <main className="Sessao">
                 <h3>Selecione o horário</h3>
@@ -76,7 +76,7 @@ function Sessoes() {
 
             <Rodape title={title} posterURL={posterURL} />
         </>
-    )
+    ) : <></>
 }
 
 export default Sessoes;

@@ -1,8 +1,6 @@
 import { useState } from "react";
 import style from "styled-components";
 
-
-
 function Assento({ name, isAvailable, id, setTotalAssentos, totalAssentos, identificacaoAssento, setIdentificacaoAssento, assento }) {
 
     const [selecionado, setSelecionado] = useState(false);
