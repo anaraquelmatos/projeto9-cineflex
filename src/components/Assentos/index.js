@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import Assento from "../Assento";
 import Rodape from "../Rodape";
@@ -7,6 +8,7 @@ import "./style.css";
 
 function Assentos() {
     const { idSessao } = useParams();
+    const navigate = useNavigate;
     const [totalAssentos, setTotalAssentos] = useState([]);
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
@@ -51,6 +53,8 @@ function Assentos() {
     function reservarAssento(event) {
 
         event.preventDefault();
+
+        navigate("/sucesso", {state: totalAssentos, nome, cpf, title, weekday, name});
 
         axios
             .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, {
@@ -107,7 +111,9 @@ function Assentos() {
                         <label for="campoCPF" >CPF do comprador:</label>
                         <input id="campoCPF" name="cpf" type="number" placeholder="Digite seu CPF..." required value={cpf} onChange={e => setCpf(e.target.value)}></input>
                         <div className="botao">
+                            <Link to={`/sucesso`}>
                             <button type="submit">Reservar assento(s)</button>
+                            </Link>
                         </div>
                     </form>
                 </div>

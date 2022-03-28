@@ -1,0 +1,61 @@
+.Sucesso{
+    width: 100%;
+    height: 100%;
+}
+
+.Sucesso h3{
+    padding-top: 30px;
+    padding-bottom: 50px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #247A6B;
+}
+
+.Sucesso .bloco{
+    height: 110px;
+    margin-bottom: 15px;
+    margin-left: 29px;
+}
+
+.Sucesso h4{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0.04em;
+    color: #293845;
+}
+
+.Sucesso p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    letter-spacing: 0.04em;
+    color: #293845;
+}
+
+.Sucesso .confirmacao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .Sucesso .confirmacao button{
+    width: 225px;
+    height: 42px;
+    margin: 20px auto;
+    border: none;
+    background: #E8833A;
+    border-radius: 3px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+ }

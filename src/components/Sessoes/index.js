@@ -47,9 +47,9 @@ function Sessoes() {
                 <h3>Selecione o horário</h3>
                 {
                     sessoes.days.map((sessao) => {
-                        return (<div className="programacao" key={sessao + sessao.id + 1}>
+                        return (<div className="programacao">
                             <div className="informacoes" >
-                                <p>{sessao.weekday} - {sessao.date}</p>
+                                <p key={sessao + sessao.id + 1}>{sessao.weekday} - {sessao.date}</p>
                                 <div className="horarios">
                                     {
                                         sessao.showtimes.map((horario) => {
@@ -57,7 +57,7 @@ function Sessoes() {
                                             return (
 
                                                 <Link to={`/assentos/${horario.id}`}>
-                                                    <div className="horario">{horario.name}</div>
+                                                    <div className="horario" key={horario.id + horario.id}>{horario.name}</div>
                                                 </Link>
 
                                             );
