@@ -125,7 +125,7 @@ function Assentos() {
                         <label>Nome do comprador:</label>
                         <input name="nome" type="text" placeholder="Digite seu nome..." required value={nome} onChange={e => setNome(e.target.value)}></input>
                         <label>CPF do comprador:</label>
-                        <input name="cpf" type="number" placeholder="Digite seu CPF..." required value={cpf} onChange={e => setCpf(e.target.value)}></input>
+                        <input name="cpf" type="text" minLength="11" maxLength="11" title="Digite somente números" pattern="[0-9]+" placeholder="Digite seu CPF..." required value={cpf} onChange={e => setCpf(e.target.value)}></input>
                         <div className="botao">
                             <button type="submit">Reservar assento(s)</button>
                         </div>
