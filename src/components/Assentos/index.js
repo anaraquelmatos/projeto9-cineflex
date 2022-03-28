@@ -53,26 +53,29 @@ function Assentos() {
 
         event.preventDefault();
 
-        axios
-            .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, {
-                ids: totalAssentos,
-                name: nome,
-                cpf: cpf
-            })
-            .then(() => {
-                const Reserva = {
+        if (identificacaoAssento.length === 0) {
+            alert("Escolha um assento");
+        } else {
+            axios
+                .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, {
                     ids: totalAssentos,
-                    nome: nome,
-                    cpf: cpf,
-                    titulo: title,
-                    dia: weekday,
-                    horario: name,
-                    identificacao: identificacaoAssento
+                    name: nome,
+                    cpf: cpf
+                })
+                .then(() => {
+                    const Reserva = {
+                        nome: nome,
+                        cpf: cpf,
+                        titulo: title,
+                        dia: weekday,
+                        horario: name,
+                        identificacao: identificacaoAssento
+                    }
+
+                    return navigate("/sucesso", { state: Reserva });
                 }
-                
-               return navigate("/sucesso", { state: Reserva });
-            }
-            );
+                );
+        }
 
     }
 
@@ -88,8 +91,8 @@ function Assentos() {
                                     return (
                                         <Assento key={assento + 1 + assento.name} name={assento.name}
                                             isAvailable={assento.isAvailable} id={assento.id}
-                                            setTotalAssentos={setTotalAssentos} totalAssentos={totalAssentos} 
-                                            identificacaoAssento={identificacaoAssento} setIdentificacaoAssento={setIdentificacaoAssento} assento={assento.name}/>
+                                            setTotalAssentos={setTotalAssentos} totalAssentos={totalAssentos}
+                                            identificacaoAssento={identificacaoAssento} setIdentificacaoAssento={setIdentificacaoAssento} assento={assento.name} />
                                     );
                                 })
                             }
@@ -124,7 +127,7 @@ function Assentos() {
                         <label>CPF do comprador:</label>
                         <input name="cpf" type="number" placeholder="Digite seu CPF..." required value={cpf} onChange={e => setCpf(e.target.value)}></input>
                         <div className="botao">
-                                <button type="submit">Reservar assento(s)</button>
+                            <button type="submit">Reservar assento(s)</button>
                         </div>
                     </form>
                 </div>

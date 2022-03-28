@@ -27,10 +27,11 @@
 
 .Sucesso .bloco{
     margin-left: 29px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .Sucesso h4{
+    padding-bottom: 5px;
     font-style: normal;
     font-weight: 700;
     font-size: 24px;
@@ -57,7 +58,7 @@
  .Sucesso .confirmacao button{
     width: 225px;
     height: 42px;
-    margin: 20px auto;
+    margin: 60px auto;
     border: none;
     background: #E8833A;
     border-radius: 3px;
