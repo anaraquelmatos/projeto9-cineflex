@@ -7,6 +7,9 @@ import "./style.css";
 
 function Assentos() {
     const { idSessao } = useParams();
+    const [totalAssentos, setTotalAssentos] = useState([]);
+    const [nome, setNome] = useState("");
+    const [cpf, setCpf] = useState("");
     const [assentos, setAssentos] = useState({
         id: 0,
         name: "",
@@ -31,8 +34,8 @@ function Assentos() {
     });
 
     const { day, movie, name } = assentos;
-    const {weekday} = day;
-    const {title, posterURL} = movie;
+    const { weekday } = day;
+    const { title, posterURL } = movie;
     const hifen = "-";
 
     useEffect(() => {
@@ -45,6 +48,18 @@ function Assentos() {
             .catch(err => console.log(err.response));
     }, [idSessao])
 
+    function reservarAssento(event) {
+
+        event.preventDefault();
+
+        axios
+            .post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, {
+                ids: totalAssentos,
+                name: nome,
+                cpf: cpf
+            });
+    }
+
     return Object.values(assentos).length > 0 ? (
         <>
             <main className="Assento">
@@ -55,10 +70,11 @@ function Assentos() {
                             {
                                 assentos.seats.map((assento) => {
                                     return (
-                                        <Assento key={assento + 1 + assento.name} name={assento.name} isAvailable={assento.isAvailable} />
+                                        <Assento key={assento + 1 + assento.name} name={assento.name}
+                                            isAvailable={assento.isAvailable} id={assento.id}
+                                            setTotalAssentos={setTotalAssentos} totalAssentos={totalAssentos} />
                                     );
                                 })
-
                             }
                         </div>
                     </div>
@@ -84,24 +100,21 @@ function Assentos() {
                     </article>
                 </div>
 
-                <div className="form">
+                <div className="form" onSubmit={reservarAssento}>
                     <form>
-                        <label for="nome">Nome do comprador:</label>
-                        <input id="nome" name="nome" type="text" placeholder="Digite seu nome..." required></input>
-                        <label for="cpf" >CPF do comprador:</label>
-                        <input id="cpf" name="cpf" type="text" placeholder="Digite seu CPF..." maxLength="11" minLength="11" required></input>
+                        <label for="campoNome">Nome do comprador:</label>
+                        <input id="campoNome" name="nome" type="text" placeholder="Digite seu nome..." required value={nome} onChange={e => setNome(e.target.value)}></input>
+                        <label for="campoCPF" >CPF do comprador:</label>
+                        <input id="campoCPF" name="cpf" type="number" placeholder="Digite seu CPF..." required value={cpf} onChange={e => setCpf(e.target.value)}></input>
                         <div className="botao">
                             <button type="submit">Reservar assento(s)</button>
                         </div>
                     </form>
                 </div>
             </main>
-            <Rodape title={title} posterURL={posterURL} weekday={weekday} name={name} hifen={hifen}/>
+            <Rodape title={title} posterURL={posterURL} weekday={weekday} name={name} hifen={hifen} />
         </>
     ) : <></>;
 }
-
-
-
 
 export default Assentos;
